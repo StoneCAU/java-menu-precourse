@@ -92,6 +92,13 @@ public enum Menu {
         }
     }
 
+    public static List<String> getMenuNamesByCategory(Category category) {
+        return Arrays.stream(Menu.values())
+                .filter(menu -> menu.getCategory().equals(category))
+                .map(Menu::getName)
+                .toList();
+    }
+
     private static boolean isValidMenu(List<String> menuNames) {
         return menuNames.stream()
                 .allMatch(menuName -> Arrays.stream(Menu.values())

@@ -1,5 +1,7 @@
 package menu.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 public enum Category {
     JAPANESE_FOOD("일식"),
     KOREAN_FOOD("한식"),
@@ -15,5 +17,10 @@ public enum Category {
 
     public String getName() {
         return name;
+    }
+
+    public static Category suggest() {
+        int number = Randoms.pickNumberInRange(1,5);
+        return Category.values()[number - 1];
     }
 }
