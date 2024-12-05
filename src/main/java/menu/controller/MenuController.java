@@ -14,7 +14,7 @@ public class MenuController {
     public void run() {
         OutputView.printWelcomeMessage();
         List<Coach> coaches = getCoaches();
-        List<Category> categories = getCategories();
+        List<Category> categories = Category.getCategories();
         categories.forEach(category -> coaches.forEach(coach -> suggestToCoach(coach, category)));
         OutputView.printResult(categories, coaches);
     }
@@ -61,29 +61,6 @@ public class MenuController {
                 OutputView.printErrorMessage(e.getMessage());
             }
         }
-    }
-
-    private List<Category> getCategories() {
-        List<Category> categories = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            Category category = suggestCategory(categories);
-            categories.add(category);
-        }
-        return categories;
-    }
-
-    private Category suggestCategory(List<Category> categories) {
-        Category category = Category.suggest();
-        if (isInValidCategory(categories, category)) {
-            return suggestCategory(categories);
-        }
-        return category;
-    }
-
-    private boolean isInValidCategory(List<Category> categories, Category category) {
-        return categories.stream()
-                .filter(ct -> ct == category)
-                .count() == 2;
     }
 
     private static void suggestToCoach(Coach coach, Category category) {

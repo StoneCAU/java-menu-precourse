@@ -1,6 +1,8 @@
 package menu.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.List;
 
 public enum Category {
     JAPANESE_FOOD("일식"),
@@ -22,5 +24,28 @@ public enum Category {
     public static Category suggest() {
         int number = Randoms.pickNumberInRange(1,5);
         return Category.values()[number - 1];
+    }
+
+    public static  List<Category> getCategories() {
+        List<Category> categories = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            Category category = suggestCategory(categories);
+            categories.add(category);
+        }
+        return categories;
+    }
+
+    private static Category suggestCategory(List<Category> categories) {
+        Category category = suggest();
+        if (isInValidCategory(categories, category)) {
+            return suggestCategory(categories);
+        }
+        return category;
+    }
+
+    private static boolean isInValidCategory(List<Category> categories, Category category) {
+        return categories.stream()
+                .filter(ct -> ct == category)
+                .count() == 2;
     }
 }
