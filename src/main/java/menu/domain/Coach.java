@@ -31,7 +31,7 @@ public class Coach {
         String menuName = Randoms.shuffle(menuNames).get(0);
         Menu menu = Menu.getMenu(menuName);
 
-        if (unlikeMenus.contains(menu)) return suggestMenuByCategory(category);
+        if (unlikeMenus.contains(menu) || suggestedMenus.contains(menu)) return suggestMenuByCategory(category);
         return menu;
     }
 }

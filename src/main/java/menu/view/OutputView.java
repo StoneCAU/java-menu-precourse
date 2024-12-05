@@ -13,7 +13,8 @@ public class OutputView {
     }
 
     public static void printResult(List<Category> categories, List<Coach> coaches) {
-        System.out.println("%n메뉴 추천 결과입니다.");
+        printNewLine();
+        System.out.println("메뉴 추천 결과입니다.");
         System.out.println("[ 구분 | 월요일 | 화요일 | 수요일 | 목요일 | 금요일 ]");
         System.out.printf("[ 카테고리 | %s | %s | %s | %s | %s ]%n", categories.get(0).getName(),
                 categories.get(1).getName(), categories.get(2).getName(), categories.get(3).getName(),
