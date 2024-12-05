@@ -16,6 +16,12 @@ public class InputValidator {
         return parsed;
     }
 
+    public static List<String> validateMenus(String input) {
+        List<String> parsed = parseInput(input);
+        validateMenus(parsed);
+        return parsed;
+    }
+
     private static List<String> parseInput(String input) {
         return Arrays.stream(input.split(",")).toList();
     }
@@ -39,6 +45,12 @@ public class InputValidator {
     private static void validateCoachesName(List<String> input) {
         if(!input.stream().allMatch(InputValidator::isValidName)) {
             throw new MenuException(ErrorMessage.INVALID_COACH_NAME);
+        }
+    }
+
+    private static void validateMenus(List<String> input) {
+        if (input.size() > 2) {
+            throw new MenuException(ErrorMessage.INVALID_MENU_NUM);
         }
     }
 

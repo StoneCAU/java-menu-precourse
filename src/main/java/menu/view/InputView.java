@@ -11,6 +11,12 @@ public class InputView {
         return input();
     }
 
+    public static String inputMenus(String coachName) {
+        printNewLine();
+        System.out.printf("%s(이)가 못 먹는 메뉴를 입력해주세요.%n", coachName);
+        return input();
+    }
+
     private static String input() {
         return Console.readLine();
     }
